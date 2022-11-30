@@ -18,7 +18,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/bloodtypes', App\Http\Controllers\Api\BloodTypeController::class);
-Route::apiResource('/populations', App\Http\Controllers\Api\PopulationController::class);
-Route::apiResource('/pemilih', App\Http\Controllers\Api\PemilihController::class);
-Route::apiResource('/sex', App\Http\Controllers\Api\SexController::class);
+
+// Route::apiResource('/bloodtypes', App\Http\Controllers\Api\BloodTypeController::class);
+// Route::apiResource('/populations', App\Http\Controllers\Api\PopulationController::class);
+// Route::apiResource('/pemilih', App\Http\Controllers\Api\PemilihController::class);
+// Route::apiResource('/sex', App\Http\Controllers\Api\SexController::class);
+
+
+Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::apiResources([
+        'bloodtypes' => App\Http\Controllers\Api\BloodTypeController::class,
+        'populations' => App\Http\Controllers\Api\PopulationController::class,
+        'pemilih' => App\Http\Controllers\Api\PemilihController::class,
+        'sex' => App\Http\Controllers\Api\SexController::class,
+    ]);
+});
