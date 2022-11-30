@@ -38,3 +38,4 @@ Route::group(['middleware' => 'auth:api'], function () {
         'sex' => App\Http\Controllers\Api\SexController::class,
     ]);
 });
+Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
