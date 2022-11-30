@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/bloodtypes', App\Http\Controllers\Api\BloodTypeController::class);
 Route::apiResource('/populations', App\Http\Controllers\Api\PopulationController::class);
 Route::apiResource('/pemilih', App\Http\Controllers\Api\PemilihController::class);
+Route::apiResource('/sex', App\Http\Controllers\Api\SexController::class);
