@@ -23,6 +23,7 @@ class PopulationController extends Controller
                         ->leftJoin('tweb_wil_clusterdesa', 'tweb_penduduk.id_cluster', '=', 'tweb_wil_clusterdesa.id')
                         ->leftJoin('tweb_penduduk_sex', 'tweb_penduduk.sex', '=', 'tweb_penduduk_sex.id')
                         ->select(['tweb_wil_clusterdesa.id as DusunID', 'tweb_wil_clusterdesa.dusun as DusunName', 'tweb_wil_clusterdesa.rt AS RT', 'tweb_wil_clusterdesa.rw AS RW',
+                                    DB::raw("COUNT(DISTINCT tweb_penduduk.id_kk) as 'Jumlah KK'"),
                                     DB::raw("COUNT(CASE WHEN tweb_penduduk_sex.nama = 'LAKI-LAKI' THEN 1 END) as Pria"),
                                     DB::raw("COUNT(CASE WHEN tweb_penduduk_sex.nama = 'PEREMPUAN' THEN 1 END) as Wanita"),
                                     DB::raw("COUNT(*) AS Total_PW")
