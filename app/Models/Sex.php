@@ -9,10 +9,11 @@ class Sex extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-    public function populations()
+    public function penduduk()
     {
-        return $this->hasMany(Population::class);
+        return $this->hasMany(Penduduk::class);
+        // return $this->belongsTo(GolonganDarah::class);
     }
     protected $table = 'tweb_penduduk_sex';
+    protected $guarded = ['id'];
 }
